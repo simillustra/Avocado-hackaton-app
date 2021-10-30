@@ -9,7 +9,7 @@ CONFIG.current_env = process.env.NODE_ENV ? process.env.NODE_ENV : 'production';
 CONFIG.port = process.env.PORT ? process.env.PORT : '5000';
 
 // Database
-CONFIG.mongodb_uri = process.env.NODE_ENV === 'production' ? process.env.MONGODB_URI_PRODUCTION : process.env.MONGODB_URI ? process.env.MONGODB_URI : 'mongodb://127.0.0.1:27017/avocado';
+CONFIG.mongodb_uri = process.env.NODE_ENV === 'production' ? "mongodb+srv://simDevOps:BdKPrGuYLom8v3W9@cluster0.ogoge.mongodb.net/Avocado?retryWrites=true&w=majority" : process.env.MONGODB_URI ? process.env.MONGODB_URI : 'mongodb://127.0.0.1:27017/avocado';
 
 // JWT
 CONFIG.jwt_secret_key =
