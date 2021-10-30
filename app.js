@@ -1,3 +1,4 @@
+const mongoose = require('mongoose')
 require('module-alias/register');
 const CONFIG = require('@config/config');
 
@@ -41,6 +42,21 @@ app.use(compression());
 
 // CORS
 app.use(cors());
+app.use((req, res, next) => {
+   res.setHeader("Access-Control-Allow-Origin", "*");
+   res.setHeader("Access-Control-Allow-Methods", "POST,GET,PUT,PATCH,DELETE,OPTIONS");
+   res.setHeader(
+     "Access-Control-Allow-Headers",
+     "X-Requested-With,X-HTTP-Methods-Override,Content-Type,Accept,Cache-Control, Pragma, Origin,Authorization, Content-Type"
+   );
+   res.setHeader("Access-Control-Allow-Credentials", "true");
+   if (req.method === "OPTIONS") {
+     res.setHeader("Access-Control-Allow-Methods", "POST, PUT, PATCH, GET, DELETE");
+     // return res.status(200).json({})
+     return res.send(200);
+   }
+   next();
+ });
 
 // Maintenance mode
 // app.use(maintenance());
@@ -85,5 +101,32 @@ app.listen(CONFIG.port, async () => {
 
    // await createDummyData();
 });
+
+process.on("SIGTERM", () => {
+   console.info("SIGTERM signal received.");
+   console.log("Closing http server.");
+   httpsServer.close(() => {
+     console.log("Http server closed.");
+     // boolean means [force], see in mongoose doc
+     mongoose.connection.close(false, () => {
+       console.log("MongoDb connection closed.");
+     });
+   });
+ });
+ 
+ process.on("message", msg => {
+   if (msg === "shutdown") {
+     console.log("Closing all connections...");
+     setTimeout(() => {
+       console.log("Finished closing connections");
+       process.exit(0);
+     }, 1500);
+   }
+ });
+ 
+ process.on('unhandledRejection', error => {
+   // Will print "unhandledRejection err is not defined"
+   console.log('unhandledRejection', error.message);
+ });
 
 module.exports = app;
