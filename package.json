@@ -4,7 +4,7 @@
    "description": "A multi-wallet currency app",
    "private": true,
    "scripts": {
-      "start": "cross-env NODE_ENV=production node -r dotenv/config app.js",
+      "start": "cross-env NODE_ENV=production nodemon -r dotenv/config app.js",
       "start-dev": "cross-env NODE_ENV=development nodemon -r dotenv/config app.js",
       "debug": "nodemon --inspect app.js"
    },
@@ -34,11 +34,7 @@
       "url-slug": "^2.2.0",
       "validator": "^12.0.0"
    },
-   "devDependencies": {
-      "cross-env": "^7.0.3",
-      "dotenv": "^8.6.0",
-      "nodemon": "^2.0.6"
-   },
+   "devDependencies": {},
    "_moduleAliases": {
       "@config": "config",
       "@controllers": "controllers",

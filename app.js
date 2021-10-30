@@ -83,7 +83,7 @@ app.listen(CONFIG.port, async () => {
 
    console.log('  Press CTRL-C to stop\n');
 
-   await createDummyData();
+   // await createDummyData();
 });
 
 module.exports = app;
