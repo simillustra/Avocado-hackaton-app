@@ -1,0 +1,48 @@
+{
+   "name": "avocado-bank-service-api",
+   "version": "1.0.0",
+   "description": "A multi-wallet currency app",
+   "private": true,
+   "scripts": {
+      "start": "cross-env NODE_ENV=production node -r dotenv/config app.js",
+      "start-dev": "cross-env NODE_ENV=development nodemon -r dotenv/config app.js",
+      "debug": "nodemon --inspect app.js"
+   },
+   "dependencies": {
+      "bcryptjs": "^2.4.3",
+      "body-parser": "^1.19.0",
+      "chalk": "^4.1.0",
+      "compression": "^1.7.4",
+      "cors": "^2.8.5",
+      "date-fns": "^2.16.1",
+      "debug": "^4.1.1",
+      "express": "^4.17.1",
+      "express-validator": "^6.2.0",
+      "faker": "^5.1.0",
+      "helmet": "^3.21.2",
+      "jsonwebtoken": "^8.5.1",
+      "lodash": "^4.17.20",
+      "module-alias": "^2.2.2",
+      "mongodb": "^3.3.3",
+      "mongoose": "^5.7.7",
+      "nodemailer": "^6.3.1",
+      "nodemailer-mailgun-transport": "^1.4.0",
+      "strapi": "^3.3.4",
+      "url-slug": "^2.2.0",
+      "validator": "^12.0.0"
+   },
+   "devDependencies": {
+      "cross-env": "^7.0.3",
+      "dotenv": "^8.6.0",
+      "nodemon": "^2.0.6"
+   },
+   "_moduleAliases": {
+      "@config": "config",
+      "@controllers": "controllers",
+      "@middleware": "middleware",
+      "@models": "models",
+      "@routes": "routes",
+      "@util": "util",
+      "@validations": "validations"
+   }
+}
